@@ -33,6 +33,9 @@ Daily Log:
 - [ ] User can complete task
 - [ ] User can migrate task
 - [ ] User can scheduele task
+- [ ] User can add signifiers to tasks/events/notes
+- [ ] Users can self host the journal 
+- [ ] Users can sign up for cloud hosted journals
 
 
 ## Known Bugs
