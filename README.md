@@ -31,9 +31,16 @@ Daily Log:
 - [ ] User can add events
 - [ ] User can add notes
 - [ ] User can complete task
-- [ ] User can migrate task
-- [ ] User can scheduele task
 - [ ] User can add signifiers to tasks/events/notes
+
+Monthly Log:
+- [ ] User calender appears alongside Monthly Log
+- [ ] User can migrate tasks/events
+
+Future Log:
+- [ ] User can scheduele task/events
+
+General Features: 
 - [ ] Users can self host the journal 
 - [ ] Users can sign up for cloud hosted journals
 
