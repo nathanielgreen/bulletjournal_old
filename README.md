@@ -15,11 +15,12 @@ A live version of the app is currently not available nor is a mobile version.
 
 ## Technologies Used
 
-The current proposed technologies are:
+The current technologies used are:
 
-- Go or Node.js/Express.js for the Back-end
-- React Front-End
-- React-native for mobile.
+- Node.js
+- React.js
+- Webpack
+- Babel
 
 
 ## Future Features
