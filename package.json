@@ -1,0 +1,27 @@
+{
+  "name": "bulletjournal",
+  "version": "0.0.0",
+  "description": "A analog organization system in a digital format",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nathanielgreen/bulletjournal.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/nathanielgreen/bulletjournal/issues"
+  },
+  "dependencies": {
+    "webpack": "~1.13.1",
+    "babel-core": "~6.11.4",
+    "babel-preset-react": "~6.11.1",
+    "babel-loader": "~6.2.4",
+    "babel-preset-es2015": "~6.9.0",
+    "react": "~15.2.1",
+    "react-dom": "~15.2.1"
+  }
+}
