@@ -1,27 +1,26 @@
 {
   "name": "bulletjournal",
-  "version": "0.0.0",
-  "description": "A analog organization system in a digital format",
-  "main": "main.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/nathanielgreen/bulletjournal.git"
-  },
-  "author": "",
-  "license": "BSD-2-Clause",
-  "bugs": {
-    "url": "https://github.com/nathanielgreen/bulletjournal/issues"
-  },
+  "version": "1.1.1",
+  "description": "bulletjournal: An Ionic project",
   "dependencies": {
-    "webpack": "~1.13.1",
-    "babel-core": "~6.11.4",
-    "babel-preset-react": "~6.11.1",
-    "babel-loader": "~6.2.4",
-    "babel-preset-es2015": "~6.9.0",
-    "react": "~15.2.1",
-    "react-dom": "~15.2.1"
-  }
+    "gulp": "^3.5.6",
+    "gulp-sass": "^2.0.4",
+    "gulp-concat": "^2.2.0",
+    "gulp-minify-css": "^0.3.0",
+    "gulp-rename": "^1.2.0"
+  },
+  "devDependencies": {
+    "bower": "^1.3.3",
+    "gulp-util": "^2.2.14",
+    "shelljs": "^0.3.0"
+  },
+  "cordovaPlugins": [
+    "cordova-plugin-device",
+    "cordova-plugin-console",
+    "cordova-plugin-whitelist",
+    "cordova-plugin-splashscreen",
+    "cordova-plugin-statusbar",
+    "ionic-plugin-keyboard"
+  ],
+  "cordovaPlatforms": []
 }
