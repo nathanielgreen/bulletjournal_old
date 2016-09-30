@@ -18,10 +18,7 @@ A live version of the app is currently not available nor is a mobile version.
 The current technologies used are:
 
 - Node.js
-- React.js
-- Webpack
-- Babel
-
+- Ionic
 
 ## Future Features
 
