@@ -26,7 +26,11 @@
       <!-- Center Content -->
       <ion-side-menu-content>
         <ion-header-bar class="bar-dark">
-          <h1 class="title">Daily Log</h1>
+          <button class="button button-icon" ng-click="toggleLogs()">
+            <i class="icon ion-navicon"></i>
+          </button>
+          <h1 class="title">{{activeLog.title}}</h1>
+          <!-- New Task Button -->
           <button class="button button-icon" ng-click="newTask()">
             <i class="icon ion-compose"></i>
           </button>
@@ -34,7 +38,7 @@
         <ion-content>
           <!-- List -->
           <ion-list>
-            <ion-item ng-repeat="task in tasks">
+            <ion-item ng-repeat="task in activeLog.tasks">
               {{task.title}}
             </ion-item>
           </ion-list>
@@ -47,7 +51,18 @@
       <ion-side-menu side="left">
         <ion-header-bar class="bar-dark">
           <h1 class="title">Logs</h1>
+          <button class="button button-icon ion-plus" ng-click="newLog()">
+          </button>
         </ion-header-bar>
+        <ion-content scroll="false">
+          <ion-list>
+            <ion-item ng-repeat="log in logs" 
+              ng-click"selectLog(log, $index)" 
+              ng-class="{active: activeLog = log}">
+              {{log.title}}
+            </ion-item>
+          </ion-list>
+        </ion-content>
       </ion-side-menu>
       <!-- Left Menu End -->
 
