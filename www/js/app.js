@@ -95,6 +95,9 @@ angular.module('bulletjournal', ['ionic'])
     $ionicSideMenuDelegate.toggleLeft();
   };
 
+  $scope.toggleTaskCompletion = function() {
+  };
+
 
   // Try to create the first log, make sure to defer
   // this by using $timeout so everything is initialized
@@ -113,3 +116,30 @@ angular.module('bulletjournal', ['ionic'])
 
 })
 
+.directive('iconSwitcher', function() {
+  
+  return {
+    restrict : 'A',
+    
+    link : function(scope, elem, attrs) {
+      
+      var currentState = true;
+      
+      elem.on('click', function() {
+        
+        if(currentState === true) {
+          angular.element(elem).removeClass(attrs.onIcon);
+          angular.element(elem).addClass(attrs.offIcon);
+        } else {
+          angular.element(elem).removeClass(attrs.offIcon);
+          angular.element(elem).addClass(attrs.onIcon);
+        }
+        
+        currentState = !currentState
+
+      });
+      
+      
+    }
+  };
+});  

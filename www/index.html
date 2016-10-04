@@ -38,7 +38,11 @@
         <ion-content>
           <!-- List -->
           <ion-list>
-            <ion-item ng-repeat="task in activeLog.tasks">
+            <ion-item ng-repeat="task in activeLog.tasks"
+              ng-click="toggleTaskCompletion()"
+              class="icon ion-android-checkbox-outline-blank"
+              on-icon="icon ion-android-checkbox-outline-blank"
+              off-icon="icon ion-android-checkbox" icon-switcher>
               {{task.title}}
             </ion-item>
           </ion-list>
@@ -57,7 +61,7 @@
         <ion-content scroll="false">
           <ion-list>
             <ion-item ng-repeat="log in logs" 
-              ng-click"selectLog(log, $index)" 
+              ng-click="selectLog(log, $index)" 
               ng-class="{active: activeLog = log}">
               {{log.title}}
             </ion-item>
