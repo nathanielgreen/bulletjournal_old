@@ -31,19 +31,16 @@
           </button>
           <h1 class="title">{{activeLog.title}}</h1>
           <!-- New Task Button -->
-          <button class="button button-icon" ng-click="newTask()">
+          <button class="button button-icon" ng-click="newItem()">
             <i class="icon ion-compose"></i>
           </button>
         </ion-header-bar>
         <ion-content>
           <!-- List -->
           <ion-list>
-            <ion-item ng-repeat="task in activeLog.tasks"
-              ng-click="toggleTaskCompletion()"
-              class="icon ion-android-checkbox-outline-blank"
-              on-icon="icon ion-android-checkbox-outline-blank"
-              off-icon="icon ion-android-checkbox" icon-switcher>
-              {{task.title}}
+            <ion-item ng-repeat="item in items">
+              <i class="icon {{item.icon}}" /> 
+              {{item.title}}
             </ion-item>
           </ion-list>
           <!-- List End -->
@@ -53,7 +50,7 @@
 
       <!-- Left Menu -->
       <ion-side-menu side="left">
-        <ion-header-bar class="bar-dark">
+        <ion-header-bar class="bar-light">
           <h1 class="title">Logs</h1>
           <button class="button button-icon ion-plus" ng-click="newLog()">
           </button>
@@ -71,15 +68,15 @@
       <!-- Left Menu End -->
 
     </ion-side-menus>
-    <script id="new-task.html" type="text/ng-template">
+    <script id="new-item.html" type="text/ng-template">
 
       <div class="modal">
 
         <!-- Modal header bar -->
         <ion-header-bar class="bar-secondary">
-          <h1 class="title">New Task</h1>
+          <h1 class="title">New Item</h1>
           <button class="button button-clear button-positive" 
-            ng-click="closeNewTask()">Cancel</button>
+            ng-click="closeNewItem()">Cancel</button>
         </ion-header-bar>
         <!-- Modal header bar End -->
 
@@ -87,12 +84,19 @@
         <!-- Modal content area -->
         <ion-content>
 
-          <form ng-submit="createTask(task)">
+          <form ng-submit="createItem(item)">
             <div class="list">
               <label class="item item-input">
                 <input type="text" placeholder="What do you need to do?" 
-                  ng-model="task.title">
+                  ng-model="item.title">
               </label>
+            </div>
+            <div>
+              <ion-list class="list">
+                <ion-radio ng-model="item.type" value="Task">Task</ion-radio>
+                <ion-radio ng-model="item.type" value="Event">Event</ion-radio>
+                <ion-radio ng-model="item.type" value="Note">Note</ion-radio>
+              </ion-list>
             </div>
             <div class="padding">
               <button type="submit" 

@@ -27,13 +27,10 @@ The current technologies used are:
 
 Features with a strikethrough have been implemented.
 
-General Features:
-- [x] ~~User can switch between logs~~
-
 Daily Log:
 - [x] ~~User can add task~~
-- [ ] User can add events
-- [ ] User can add notes
+- [x] ~~User can add events~~
+- [x] ~~User can add notes~~
 - [ ] User can complete task
 - [ ] User can add signifiers to tasks/events/notes
 - [ ] Switches to new daily log on new day
@@ -46,11 +43,14 @@ Future Log:
 - [ ] User can scheduele task/events
 
 General Features: 
-- [x] Users can self host the journal 
+- [x] ~~User can switch between logs~~
+- [x] ~~Users can self host the journal~~
 - [ ] Users can sign up for cloud hosted journals
 
 
 ## Known Bugs
 
 Bugs with a strikethrough have been fixed for the latest version.
+
+- [ ] Neither tasks, events, or notes are saved in the log.
 
