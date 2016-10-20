@@ -2,7 +2,8 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, 
+      user-scalable=no, width=device-width">
     <title>Bullet Journal</title>
 
     <link rel="manifest" href="manifest.json">
@@ -21,6 +22,7 @@
     <script src="cordova.js"></script>
   </head>
   <body ng-app="bulletjournal" ng-controller="DailyCtrl">
+
     <ion-side-menus>
     
       <!-- Center Content -->
@@ -38,7 +40,8 @@
         <ion-content>
           <!-- List -->
           <ion-list>
-            <ion-item ng-repeat="item in items">
+            <ion-item ng-repeat="item in items" 
+              on-hold="showDeleteConfirm(item)">
               <i class="icon {{item.icon}}" /> 
               {{item.title}}
             </ion-item>

@@ -16,7 +16,7 @@ angular.module('bulletjournal', ['ionic'])
       // Add a new log
       return {
         title: logTitle,
-        tasks: []
+        items: []
       };
     },
     getLastActiveIndex: function() {
@@ -28,7 +28,8 @@ angular.module('bulletjournal', ['ionic'])
   }
 })
 
-.controller('DailyCtrl', function($scope, $timeout, $ionicModal, Logs, $ionicSideMenuDelegate) {
+.controller('DailyCtrl', function($scope, $timeout, $ionicModal, 
+      Logs, $ionicSideMenuDelegate) {
 
   // A utility function for creating a new log
   // with the given logTitle
@@ -42,6 +43,8 @@ angular.module('bulletjournal', ['ionic'])
 
   // Load or initialize logs
   $scope.logs = Logs.all();
+
+  $scope.items = [];
 
   // Grab the last active, or the first log
   $scope.activeLog = $scope.logs[Logs.getLastActiveIndex()];
@@ -62,33 +65,38 @@ angular.module('bulletjournal', ['ionic'])
   };
 
   // Create our modal
-  $ionicModal.fromTemplateUrl('new-task.html', function(modal) {
-    $scope.taskModal = modal;
+  $ionicModal.fromTemplateUrl('new-item.html', function(modal) {
+    $scope.itemModal = modal;
   }, {
     scope: $scope
   });
 
-  $scope.createTask = function(task) {
-    if(!$scope.activeLog || !task) {
+  
+  $scope.createItem = function(item) {
+    if(!$scope.activeLog || !item) {
       return;
     }
-    $scope.activeLog.tasks.push({
-      title: task.title
+    $scope.items.push({
+      title: item.title,
+      type: item.type,
+      icon: checkItemType(item)
     });
-    $scope.taskModal.hide();
+    console.log($scope.items);
+    $scope.itemModal.hide();
 
     // Inefficient, but save all the logs
     Logs.save($scope.logs);
 
-    task.title = "";
+    item.title = "";
+    item.type = "";
   };
 
-  $scope.newTask = function() {
-    $scope.taskModal.show();
+  $scope.newItem = function() {
+    $scope.itemModal.show();
   };
 
-  $scope.closeNewTask = function() {
-    $scope.taskModal.hide();
+  $scope.closeNewItem = function() {
+    $scope.itemModal.hide();
   }
 
   $scope.toggleLogs = function() {
@@ -97,6 +105,13 @@ angular.module('bulletjournal', ['ionic'])
 
   $scope.toggleTaskCompletion = function() {
   };
+
+  checkItemType = function(item) {
+    if(item.type == "Task"){  return "ion-android-checkbox-outline-blank" }
+    if(item.type == "Event"){ return "ion-android-radio-button-off" }
+    if(item.type == "Note"){  return "ion-android-remove" }
+  };
+
 
 
   // Try to create the first log, make sure to defer
@@ -116,30 +131,3 @@ angular.module('bulletjournal', ['ionic'])
 
 })
 
-.directive('iconSwitcher', function() {
-  
-  return {
-    restrict : 'A',
-    
-    link : function(scope, elem, attrs) {
-      
-      var currentState = true;
-      
-      elem.on('click', function() {
-        
-        if(currentState === true) {
-          angular.element(elem).removeClass(attrs.onIcon);
-          angular.element(elem).addClass(attrs.offIcon);
-        } else {
-          angular.element(elem).removeClass(attrs.offIcon);
-          angular.element(elem).addClass(attrs.onIcon);
-        }
-        
-        currentState = !currentState
-
-      });
-      
-      
-    }
-  };
-});  
