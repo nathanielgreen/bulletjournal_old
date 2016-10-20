@@ -31,6 +31,7 @@ Daily Log:
 - [x] ~~User can add task~~
 - [x] ~~User can add events~~
 - [x] ~~User can add notes~~
+- [x] User can delete tasks/events/notes
 - [ ] User can complete task
 - [ ] User can add signifiers to tasks/events/notes
 - [ ] Switches to new daily log on new day
@@ -53,4 +54,5 @@ General Features:
 Bugs with a strikethrough have been fixed for the latest version.
 
 - [ ] Neither tasks, events, or notes are saved in the log.
+- [ ] Deleting item deletes the wrong index.
 
