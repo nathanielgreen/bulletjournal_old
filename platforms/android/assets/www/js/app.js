@@ -28,8 +28,30 @@ angular.module('bulletjournal', ['ionic'])
   }
 })
 
+.factory('Items', function() {
+  return {
+    all: function() {
+      var itemString = window.localStorage['items'];
+      if(itemString) {
+        return angular.fromJson(itemString);
+      }
+      return [];
+    },
+    save: function(items) {
+      window.localStorage['items'] = angular.toJson(items);
+    },
+    newItem: function(itemTitle) {
+      return {
+        title: itemTitle,
+        item: []
+      };
+    }
+  }
+})
+
+
 .controller('DailyCtrl', function($scope, $timeout, $ionicModal, 
-      Logs, $ionicSideMenuDelegate, $ionicPopup) {
+      Logs, Items, $ionicSideMenuDelegate, $ionicPopup) {
 
   // A utility function for creating a new log
   // with the given logTitle
@@ -44,7 +66,7 @@ angular.module('bulletjournal', ['ionic'])
   // Load or initialize logs
   $scope.logs = Logs.all();
 
-  $scope.items = [];
+  $scope.items = Items.all();
 
   // Grab the last active, or the first log
   $scope.activeLog = $scope.logs[Logs.getLastActiveIndex()];
@@ -79,9 +101,11 @@ angular.module('bulletjournal', ['ionic'])
     $scope.items.push({
       title: item.title,
       type: item.type,
-      icon: checkItemType(item)
+      icon: checkItemType(item),
+      order: $scope.items.length
     });
-    console.log($scope.items);
+    Items.save($scope.items);
+    console.log(Items);
     $scope.itemModal.hide();
 
     // Inefficient, but save all the logs
@@ -91,8 +115,8 @@ angular.module('bulletjournal', ['ionic'])
     item.type = "";
   };
 
-  $scope.deleteItem = function(index) {
-    $scope.items.splice(index, 1);
+  $scope.deleteItem = function(item) {
+    $scope.items.splice(item.order, 1);
   };
 
   $scope.newItem = function() {
@@ -131,11 +155,6 @@ angular.module('bulletjournal', ['ionic'])
     if(item.type == "Note"){  return "ion-android-remove" }
   };
 
-
-
-  // Try to create the first log, make sure to defer
-  // this by using $timeout so everything is initialized
-  // properly
   $timeout(function() {
     if($scope.logs.length == 0) {
       while(true) {
