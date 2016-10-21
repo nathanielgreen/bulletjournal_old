@@ -79,7 +79,8 @@ angular.module('bulletjournal', ['ionic'])
     $scope.items.push({
       title: item.title,
       type: item.type,
-      icon: checkItemType(item)
+      icon: checkItemType(item),
+      order: $scope.items.length
     });
     console.log($scope.items);
     $scope.itemModal.hide();
@@ -91,8 +92,8 @@ angular.module('bulletjournal', ['ionic'])
     item.type = "";
   };
 
-  $scope.deleteItem = function(index) {
-    $scope.items.splice(index, 1);
+  $scope.deleteItem = function(item) {
+    $scope.items.splice(item.order, 1);
   };
 
   $scope.newItem = function() {
@@ -131,11 +132,6 @@ angular.module('bulletjournal', ['ionic'])
     if(item.type == "Note"){  return "ion-android-remove" }
   };
 
-
-
-  // Try to create the first log, make sure to defer
-  // this by using $timeout so everything is initialized
-  // properly
   $timeout(function() {
     if($scope.logs.length == 0) {
       while(true) {

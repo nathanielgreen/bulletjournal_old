@@ -54,5 +54,5 @@ General Features:
 Bugs with a strikethrough have been fixed for the latest version.
 
 - [ ] Neither tasks, events, or notes are saved in the log.
-- [ ] Deleting item deletes the wrong index.
+- [x] ~~Deleting item deletes the wrong index.~~
 

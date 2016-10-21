@@ -29,7 +29,7 @@ angular.module('bulletjournal', ['ionic'])
 })
 
 .controller('DailyCtrl', function($scope, $timeout, $ionicModal, 
-      Logs, $ionicSideMenuDelegate) {
+      Logs, $ionicSideMenuDelegate, $ionicPopup) {
 
   // A utility function for creating a new log
   // with the given logTitle
@@ -91,6 +91,10 @@ angular.module('bulletjournal', ['ionic'])
     item.type = "";
   };
 
+  $scope.deleteItem = function(index) {
+    $scope.items.splice(index, 1);
+  };
+
   $scope.newItem = function() {
     $scope.itemModal.show();
   };
@@ -105,6 +109,21 @@ angular.module('bulletjournal', ['ionic'])
 
   $scope.toggleTaskCompletion = function() {
   };
+
+	$scope.showDeleteConfirm = function(item) {
+		var confirmPopup = $ionicPopup.confirm({
+			title: 'Delete Item',
+			template: 'Are you sure you want to delete this item?'
+		});
+
+		confirmPopup.then(function(res) {
+      if(res) {
+        $scope.deleteItem(item);
+			} else {
+				console.log('You are not sure');
+			}
+		});
+	};
 
   checkItemType = function(item) {
     if(item.type == "Task"){  return "ion-android-checkbox-outline-blank" }
