@@ -114,6 +114,14 @@ angular.module('bulletjournal', ['ionic'])
     item.type = "";
   };
 
+  $scope.deleteLog = function(log) {
+    var logIndex = $scope.logs.indexOf(log);
+    console.log($scope.logs);
+    console.log(logIndex);
+    $scope.logs.splice(logIndex, 1);
+    Logs.save($scope.logs);
+  };
+
   $scope.deleteItem = function(item) {
     var itemIndex = $scope.items.indexOf(item);
     $scope.items.splice(itemIndex, 1);
@@ -135,7 +143,7 @@ angular.module('bulletjournal', ['ionic'])
   $scope.toggleTaskCompletion = function() {
   };
 
-	$scope.showDeleteConfirm = function(item) {
+	$scope.confirmItemDelete = function(item) {
 		var confirmPopup = $ionicPopup.confirm({
 			title: 'Delete Item',
 			template: 'Are you sure you want to delete this item?'
@@ -148,7 +156,22 @@ angular.module('bulletjournal', ['ionic'])
 				console.log('You are not sure');
 			}
 		});
-	};
+  };
+
+  $scope.confirmLogDelete = function(log) {
+    var confirmPopup = $ionicPopup.confirm({
+      title: 'Delete Log',
+      template: 'Are you sure you want to delete this log?'
+    });
+
+    confirmPopup.then(function(res) {
+      if(res) {
+        $scope.deleteLog(log);
+      } else {
+        console.log('You are not sure');
+      }
+    });
+  };
 
   checkItemType = function(item) {
     if(item.type == "Task"){  return "ion-android-checkbox-outline-blank" }

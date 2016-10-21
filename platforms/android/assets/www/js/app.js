@@ -101,11 +101,10 @@ angular.module('bulletjournal', ['ionic'])
     $scope.items.push({
       title: item.title,
       type: item.type,
-      icon: checkItemType(item),
-      order: $scope.items.length
+      icon: checkItemType(item)
     });
     Items.save($scope.items);
-    console.log(Items);
+    console.log($scope.items);
     $scope.itemModal.hide();
 
     // Inefficient, but save all the logs
@@ -116,7 +115,9 @@ angular.module('bulletjournal', ['ionic'])
   };
 
   $scope.deleteItem = function(item) {
-    $scope.items.splice(item.order, 1);
+    var itemIndex = $scope.items.indexOf(item);
+    $scope.items.splice(itemIndex, 1);
+    Items.save($scope.items);
   };
 
   $scope.newItem = function() {

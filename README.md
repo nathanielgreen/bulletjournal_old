@@ -46,6 +46,7 @@ Future Log:
 General Features: 
 - [x] ~~User can switch between logs~~
 - [x] ~~Users can self host the journal~~
+- [ ] User can delete log
 - [ ] Users can sign up for cloud hosted journals
 
 
@@ -55,4 +56,5 @@ Bugs with a strikethrough have been fixed for the latest version.
 
 - [ ] Neither tasks, events, or notes are saved in the log.
 - [x] ~~Deleting item deletes the wrong index.~~
+- [ ] Deleting log deletes the wrong index.
 

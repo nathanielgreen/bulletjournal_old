@@ -41,7 +41,7 @@
           <!-- List -->
           <ion-list>
             <ion-item ng-repeat="item in items" 
-              on-hold="showDeleteConfirm(item)">
+              on-hold="confirmItemDelete(item)">
               <i class="icon {{item.icon}}" /> 
               {{item.title}}
             </ion-item>
@@ -62,7 +62,8 @@
           <ion-list>
             <ion-item ng-repeat="log in logs" 
               ng-click="selectLog(log, $index)" 
-              ng-class="{active: activeLog = log}">
+              ng-class="{active: activeLog = log}"
+              on-hold="confirmLogDelete()">
               {{log.title}}
             </ion-item>
           </ion-list>
