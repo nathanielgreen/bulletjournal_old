@@ -28,8 +28,30 @@ angular.module('bulletjournal', ['ionic'])
   }
 })
 
+.factory('Items', function() {
+  return {
+    all: function() {
+      var itemString = window.localStorage['items'];
+      if(itemString) {
+        return angular.fromJson(itemString);
+      }
+      return [];
+    },
+    save: function(items) {
+      window.localStorage['items'] = angular.toJson(items);
+    },
+    newItem: function(itemTitle) {
+      return {
+        title: itemTitle,
+        item: []
+      };
+    }
+  }
+})
+
+
 .controller('DailyCtrl', function($scope, $timeout, $ionicModal, 
-      Logs, $ionicSideMenuDelegate, $ionicPopup) {
+      Logs, Items, $ionicSideMenuDelegate, $ionicPopup) {
 
   // A utility function for creating a new log
   // with the given logTitle
@@ -44,7 +66,7 @@ angular.module('bulletjournal', ['ionic'])
   // Load or initialize logs
   $scope.logs = Logs.all();
 
-  $scope.items = [];
+  $scope.items = Items.all();
 
   // Grab the last active, or the first log
   $scope.activeLog = $scope.logs[Logs.getLastActiveIndex()];
@@ -82,7 +104,8 @@ angular.module('bulletjournal', ['ionic'])
       icon: checkItemType(item),
       order: $scope.items.length
     });
-    console.log($scope.items);
+    Items.save($scope.items);
+    console.log(Items);
     $scope.itemModal.hide();
 
     // Inefficient, but save all the logs
