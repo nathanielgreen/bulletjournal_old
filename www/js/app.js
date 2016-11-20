@@ -192,4 +192,3 @@ angular.module('bulletjournal', ['ionic'])
   }, 1000);
 
 })
-
